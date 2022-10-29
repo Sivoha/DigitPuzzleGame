@@ -127,6 +127,13 @@ let documentNumbers = document.querySelectorAll(".number");
 let movesCounter = document.querySelector(".moves-count");
 let newGameButtons = document.querySelectorAll(".new-game-button");
 
+closeModal = () => {
+    if (modal) {
+        modal.classList.remove("open");
+    }
+    backdrop.classList.remove("open");
+};
+
 let cells = [[], [], [], []];
 for (let i = 0; i < 4; ++i) {
     for (let j = 0; j < 4; ++j) {
@@ -140,17 +147,11 @@ for (let i = 0; i < 4; ++i) {
     }
 }
 
-closeModal = () => {
-    if (modal) {
-        modal.classList.remove("open");
-    }
-    backdrop.classList.remove("open");
-};
-
 for (let i = 0; i < newGameButtons.length; ++i) {
-    newGameButtons[i].addEventListener("click", (cells) => {
+    newGameButtons[i].addEventListener("click", () => {
         resetGame(cells);
         closeModal();
     });
 }
+
 window.addEventListener("keydown", (event) => moveCell(cells, event.code));
